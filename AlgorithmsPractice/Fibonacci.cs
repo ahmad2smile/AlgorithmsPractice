@@ -26,7 +26,7 @@
             var prev1 = 0UL;
             var prev2 = 1UL;
 
-            for (var i = 2UL; i <= nth; i++)
+            for (var i = 2UL; i < nth + 1; i++)
             {
                 result = prev1 + prev2;
 

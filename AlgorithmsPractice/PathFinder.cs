@@ -34,5 +34,31 @@
 
             return _cache[identifer] = Rescursive(col, row - 1) + Rescursive(col - 1, row);
         }
+
+        public ulong Tabulated(int _col, int _row)
+        {
+            if (_col == 1 && _row == 1) return 1;
+            if (_col == 0 || _row == 0) return 0;
+
+            var col = _col + 1;
+            var row = _row + 1;
+
+            var table = new List<int>(new int[row]).Select(r => new List<ulong>(new ulong[col])).ToList();
+
+            table[1][1] = 1UL;
+
+            for (int r = 0; r < row; r++)
+            {
+                for (int c = 0; c < col; c++)
+                {
+                    var current = table[r][c];
+
+                    if (r + 1 < row) table[r + 1][c] += current;
+                    if (c + 1 < col) table[r][c + 1] += current;
+                }
+            }
+
+            return table[_row][_col];
+        }
     }
 }
